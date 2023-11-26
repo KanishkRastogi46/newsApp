@@ -15,7 +15,7 @@ export const Categories= ()=>{
             return res.json();
         }).then((result)=>{
             console.log(result);
-            setNews(result);
+            setNews(result.articles);
         })
         setTopic("");
         console.log(subject);
@@ -34,7 +34,11 @@ export const Categories= ()=>{
                     <SearchIcon/>
                 </button>
             </div>
-            <div className="g*-container">
+        </div>
+
+        
+
+        <div className="g-container">
 
             <div className="btn b">
                 <input type="button" value="back" />
@@ -53,8 +57,8 @@ export const Categories= ()=>{
             </div>
 
         </div>
-        </div>
-        </div>
+    </div>
+    
     </>
 }
 
