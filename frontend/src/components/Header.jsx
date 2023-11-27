@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import "../stylesheets/Header.css";
 import { gsap } from 'gsap/gsap-core';
 
 export const Header= ()=>{
-
+    let linkRef= useRef();
+    useLayoutEffect(()=>{
+        gsap.from(linkRef.current, {
+            duration: 1,
+            y: -100
+        })
+        gsap.to(linkRef.current, {
+            duration: 1,
+            y: 0
+        })
+    })
     return <>
-        <div className="header-container">
+        <div className="header-container" ref={linkRef}>
 
             <div className="links" >
                 <NavLink 
