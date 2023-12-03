@@ -7,20 +7,18 @@ var session= require('express-session');
 var passport= require('passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var userModel= require('./routes/users')
+var userModel = require('./routes/users');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(session({
-  resave: false,
-  saveUninitialized: false,
-  secret: 'hey hello'
+  resave: true,
+  saveUninitialized: true,
+  secret: "hji hjk agdhf"
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -34,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', userModel);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
