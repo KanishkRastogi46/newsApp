@@ -50,7 +50,18 @@ export const Header= ()=>{
                     CATEGORIES
                 </NavLink>
             </div>
-
+            
+            <div className="logout">
+                <NavLink 
+                    to='/login'
+                    className={({isActive})=>
+                    `${isActive ? 'text-blue' : 'text-grey'} font-2rem`
+                }
+                    title='logout'
+                >
+                    LOGOUT
+                </NavLink>
+            </div>
         </div>
     </>
 }

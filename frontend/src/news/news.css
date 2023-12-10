@@ -33,7 +33,7 @@ img{
 
 .description{
     text-align: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 1rem;
     letter-spacing: normal;
     line-height: 1.5rem;

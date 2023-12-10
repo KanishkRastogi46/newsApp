@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session= require('express-session');
 var passport= require('passport');
+var cors= require('cors');
 
 var indexRouter = require('./routes/index');
 var userModel = require('./routes/users');
@@ -25,13 +26,18 @@ app.use(passport.session());
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+  methods: "GET, POST, PUT, DELETE, PATCH"
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 app.use('/users', userModel);
 
 // catch 404 and forward to error handler

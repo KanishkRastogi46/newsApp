@@ -2,22 +2,29 @@
     height: 10vh;
     background-color: black;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 0;
 }
 
 .links{
     display: flex;
+    justify-content: start;
     align-items: center;
     gap: 2vw;
+    padding-left: 2vmin;
+}
+
+.logout{
+    display: flex;
+    justify-content: end;
+    padding-right: 2vmin;
 }
 
 .font-2rem{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
 }
-
 
 .text-blue{
     color: blue;

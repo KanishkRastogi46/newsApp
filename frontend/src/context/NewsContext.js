@@ -7,7 +7,8 @@ export const NewsContext= createContext({
         newsUrl: "",
         imageUrl: ""
     }],
-    setNews: ()=>{}
+    setNews: ()=>{},
+    setToken: ()=>{}
 })
 
 export const NewsProvider= NewsContext.Provider;

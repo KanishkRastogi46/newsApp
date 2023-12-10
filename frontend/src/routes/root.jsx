@@ -7,8 +7,12 @@ import { NewsProvider } from '../context/index';
 const Root= ()=>{
     let [news, setNews]= useState([]);
 
+    let setToken= (token)=>{
+        localStorage.setItem('token', token);
+    }
+
     return (
-    <NewsProvider value={{news, setNews}}>
+    <NewsProvider value={{news, setNews, setToken}}>
         <Header />
         <Outlet />
         <Footer />

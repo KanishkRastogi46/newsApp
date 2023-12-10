@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import {gsap} from "gsap";
+import { NavLink } from 'react-router-dom';
 
 export const Home= ()=>{
     let h1ref= useRef();
@@ -64,29 +65,38 @@ export const Home= ()=>{
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#e5e4e8",
+                backgroundColor: "#e8e5e1",
                 boxShadow: "0px 5px 5px #e5e4e1",
                 fontFamily: "Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
             }}>
-
-                <h1 style={{textTransform: "uppercase"}} ref={h1ref}>we stay updated</h1>
-                <h1 style={{textTransform: "uppercase"}} ref={h2ref}>so that you</h1>
-                <h1 style={{textTransform: "uppercase"}} ref={h3ref}>don't get dated</h1>
-
-                <input 
-                    type="submit" 
-                    value="EXPLORE --->" 
+                <div className="text">
+                    <h1 style={{textTransform: "uppercase"}} ref={h1ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>we stay updated</h1>
+                    <h1 style={{textTransform: "uppercase"}} ref={h2ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>so that you</h1>
+                    <h1 style={{textTransform: "uppercase"}} ref={h3ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>don't get dated</h1>
+                </div>
+                
+                <NavLink 
+                    to='/general'
                     style={{
                         width: "20%",
                         height: "10%",
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         margin: "2rem",
                         borderRadius: "10%",
                         fontSize: "large",
-                        backgroundColor: "crimson"
+                        backgroundColor: "crimson",
+                        textDecoration: "none",
+                        color: 'black',
+                        fontWeight: 'bolder'
                     }}
                     ref={h4ref}
-                />
-
+                >
+                    EXPLORE >>>
+    
+                </NavLink>
+                
             </div>
             
             <div className="image" style={{height: "80vh", width: "50vw"}}>
