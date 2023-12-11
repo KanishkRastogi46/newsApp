@@ -8,17 +8,41 @@ import News from '../news/news';
 export const Categories= ()=>{
     let {news,setNews}= useNews();
     let [topic, setTopic]= useState("");
+    let [totalResults, setTotalResults]= useState(0);
+    let totalPages= Math.floor(totalResults/3);
+    let [pageno, setPageno]= useState(1);
 
-    const searchedTopic= ()=>{
-        fetch(`https://newsapi.org/v2/everything?q=${topic}&pageSize=3&apiKey=d13c430dd3a44a2eae93669d817bf181`)
+    useEffect(()=>{
+        setNews([]);
+        fetch(`https://newsapi.org/v2/everything?q=${topic}&pageSize=3&page=${pageno}&apiKey=d13c430dd3a44a2eae93669d817bf181`)
         .then((res)=>{
             return res.json();
         }).then((result)=>{
             console.log(result);
             setNews(result.articles);
+            setTotalResults(result.totalResults);
         })
         setTopic("");
         console.log(subject);
+    }, [pageno])
+
+    const searchedTopic= ()=>{
+        fetch(`https://newsapi.org/v2/everything?q=${topic}&pageSize=3&page=${pageno}&apiKey=d13c430dd3a44a2eae93669d817bf181`)
+        .then((res)=>{
+            return res.json();
+        }).then((result)=>{
+            console.log(result);
+            setNews(result.articles);
+            setTotalResults(result.totalResults);
+        })
+        setTopic("");
+        console.log(subject);
+        if(totalResults>=100){
+            setTotalResults(100);
+        }
+        else{
+            setTotalResults(news.length);
+        }
     }
 
     const search= (e)=>{
@@ -41,7 +65,16 @@ export const Categories= ()=>{
         <div className="g-container">
 
             <div className="btn b">
-                <input type="button" value="back" />
+                <input type="button" value="back" 
+                    onClick={()=>{
+                        if(pageno===1){
+                            setPageno(33);
+                        }
+                        else{
+                            setPageno(totalPages);
+                        }
+                    }}
+                />
             </div>
 
             <div className="news-content">
@@ -53,7 +86,16 @@ export const Categories= ()=>{
             </div>
 
             <div className="btn f">
-                <input type="button" value="forward" />
+                <input type="button" value="forward" 
+                    onClick={()=>{
+                        if(pageno===totalPages){
+                            setPageno(1);
+                        }
+                        else{
+                            setPageno(pageno+1);
+                        }
+                    }}
+                />
             </div>
 
         </div>

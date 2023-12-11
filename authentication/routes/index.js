@@ -25,7 +25,7 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
 });
 
 // registers the user to website
-router.post('/register', async function(req, res, next){
+router.post('/api/register', async function(req, res, next){
   console.log(req.body);
   let userData= {
     username: req.body.username,
@@ -55,24 +55,32 @@ router.post('/register', async function(req, res, next){
   })
 })
 
-// login the user
-router.post('/login', passport.authenticate('local'), function(req, res) {
+/* login the user
+router.post('/api/login', passport.authenticate('local'), function(req, res) {
   res.json(new ApiResponse(200, "user login successfull", user));
-})
+})*/
 
-router.get('/logout', function(req, res, next){
+router.post('/api/login', passport.authenticate('local', { failureRedirect: 'http://localhost:5173/login', failureMessage: true }),
+  function(req, res) {
+    res.redirect('http://localhost:5173');
+  });
+
+router.get('/api/logout', function(req, res, next){
   req.logOut(function(err){
     if(err) return next(err);
-    res.redirect("/login");
+    res.redirect("http://localhost:5173/login");
   })
 })
 
+router.get('/api/auth', isLoggedIn, function(req, res){
+  res.redirect('http://localhost:5173');
+})
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('http://localhost:5173/register');
+  res.redirect('http://localhost:5173/login');
 }
 
 module.exports = router;

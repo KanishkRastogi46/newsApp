@@ -49,28 +49,31 @@ router.post('/api/login', async function(req, res){
 
     let {username, password}= req.body;
     if(!username || !password){
-        req.json({message: "Either of the field is empty, please fill all the given fields"});
+        res.json({message: "Either of the field is empty, please fill all the given fields"});
     }
     
     let userExist= await userModel.findOne({username});
     if(!userExist){
         res.json({message: "Invaild user details or user not registered"});
     }
-
-    let correctPassword= await bcrypt.compare(password, userExist.password);
-    if(correctPassword){
-        req.session.user= {username};
-        /*res.json({
-            message: "login successfull",
-            token: await userExist.generateToken(),
-        });*/
-        res.redirect('http://localhost:5173');
-    }
     else{
-        res.json({message: "Invalid user details or user not registered"});
+        let correctPassword= await bcrypt.compare(password, userExist.password);
+        if(correctPassword){
+            res.redirect('http://localhost:5173');
+        }
+        else{
+            res.redirect('http://localhost:5173/login');
+        }
     }
 })
 
+//route for making protected routes in frontend
+router.get('/api/auth', function(req, res){
+    res.json({
+        message: "successfull request",
+        token: req.session.token
+    })
+})
 
 //for logging out the user
 router.get('/api/logout', function(req, res){

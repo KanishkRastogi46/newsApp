@@ -51,17 +51,9 @@ export const Header= ()=>{
                 </NavLink>
             </div>
             
-            <div className="logout">
-                <NavLink 
-                    to='/login'
-                    className={({isActive})=>
-                    `${isActive ? 'text-blue' : 'text-grey'} font-2rem`
-                }
-                    title='logout'
-                >
-                    LOGOUT
-                </NavLink>
-            </div>
+            <form method='get' action='/api/logout' className='logout'>
+                <input type="submit" value="LOGOUT" style={{background: 'none'}}/>
+            </form>
         </div>
     </>
 }

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useEffect } from 'react';
 import {gsap} from "gsap";
 import { NavLink } from 'react-router-dom';
 
@@ -7,6 +7,12 @@ export const Home= ()=>{
     let h2ref= useRef();
     let h3ref= useRef();
     let h4ref= useRef();
+
+    useEffect(()=>{
+        fetch('http://localhost:3000/api/auth')
+        .then((val)=>{console.log(val)})
+        .catch((err)=>{console.log(err)})
+    }, [])
 
     useLayoutEffect(()=>{
         gsap.from(h1ref.current,{

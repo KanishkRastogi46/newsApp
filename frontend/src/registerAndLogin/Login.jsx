@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNews } from '../context';
+import { useNavigate } from 'react-router-dom';
+//import axios from 'axios';
 
 const Login= ()=>{
+    let navigate= useNavigate();
     let {setToken}= useNews();
 
     let [user, setUser]= useState({username: "", password: ""});
@@ -21,22 +24,25 @@ const Login= ()=>{
         });
     };
 
-    /*const formSubmit= async()=>{
-        //e.preventDefault();
-        const login= await fetch("http://localhost:3000/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(user)
-        });
-
-        if(login.ok){
-            const res= await login.json();
-            console.log(res);
-            let token = res.token;
-            setToken(token);
+    /*const formSubmit= async(e)=>{
+        try{
+            //e.preventDefault();
+            //const login_res= await axios.post("/api/login", user);
+            let login_res= await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            if(login_res.ok){
+                let res= await login_res.json();
+                setToken(res.token);
+                navigate('/');
         }
+      }catch(err){
+        console.log(err);
+      }
     };*/
 
     return (
@@ -52,7 +58,7 @@ const Login= ()=>{
 
             <form 
                 action='/api/login'
-                //onSubmit={formSubmit} 
+                //onSubmit={(e)=>formSubmit(e)} 
                 method="post" 
                 style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", width: "400"}}
             >

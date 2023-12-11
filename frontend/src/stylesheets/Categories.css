@@ -18,7 +18,7 @@
     gap: 0vw;
 }
 
-input[type="text"]{
+#topic{
     border-radius: 10%;
     width: 20vw;
     height: 48%;

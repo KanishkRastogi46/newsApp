@@ -15,7 +15,7 @@ export const General= ()=>{
         }).then((result)=>{
             console.log(result.articles, result.totalResults);
             setNews(result.articles);
-            setTotalResults(result.totalResults);
+            setTotalResults(result.articles.length);
         })
     }, [pageno])
 
@@ -28,10 +28,12 @@ export const General= ()=>{
                     type="button" 
                     value="back" 
                     onClick={()=>{
-                        if(pageno<=1){
+                        if(pageno===1){
                             setPageno(33);
                         }
-                        setPageno(pageno-1);
+                        else{
+                            setPageno(pageno-1);
+                        }
                     }}
                 />
             </div>
@@ -49,10 +51,12 @@ export const General= ()=>{
                     type="button" 
                     value="forward" 
                     onClick={()=>{
-                        if(pageno>=33){
+                        if(pageno===33){
                             setPageno(1);
                         }
-                        setPageno(pageno+1);
+                        else{
+                            setPageno(pageno+1);
+                        }
                     }}
                 />
             </div>
