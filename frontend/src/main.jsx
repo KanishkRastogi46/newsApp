@@ -5,8 +5,9 @@ import './index.css';
 import Root from "./routes/root.jsx";
 import {Home, General, Categories, Subject} from "./components/index.js";
 import Register from './registerAndLogin/Register.jsx';
-import Login from './registerAndLogin/Login.jsx';
+//import Login1 from './registerAndLogin/Login1.jsx';
 import Error from "./components/Error.jsx";
+import Login from './registerAndLogin/Login.jsx';
 
 /*const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     path: "login",
     element: <Login />
   },
+  /*{
+    path: "register",
+    element: <Login1 />
+  },*/
   {
     path: "/",
     element: <Root />,

@@ -29,6 +29,7 @@
 
 button{
     height: 50%;
+    border-radius: 5px;
     background-color: yellowgreen;
 }
 
@@ -61,7 +62,7 @@ input{
     box-shadow: 2px 2px 2px rgb(40, 30, 50);
 }
 
-.btn>input:hover{
+.btn > input:hover{
     background-color: crimson;
 }
 

@@ -60,7 +60,7 @@ router.post('/api/login', passport.authenticate('local'), function(req, res) {
   res.json(new ApiResponse(200, "user login successfull", user));
 })*/
 
-router.post('/api/login', passport.authenticate('local', { failureRedirect: 'http://localhost:5173/login', failureMessage: true }),
+router.post('/api/login', passport.authenticate('local', { failureRedirect: 'http://localhost:5173/register', failureMessage: true }),
   function(req, res) {
     res.redirect('http://localhost:5173');
   });
@@ -68,7 +68,7 @@ router.post('/api/login', passport.authenticate('local', { failureRedirect: 'htt
 router.get('/api/logout', function(req, res, next){
   req.logOut(function(err){
     if(err) return next(err);
-    res.redirect("http://localhost:5173/login");
+    res.redirect("http://localhost:5173/register");
   })
 })
 
@@ -79,8 +79,11 @@ router.get('/api/auth', isLoggedIn, function(req, res){
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next();
+  }else{
+    res.redirect('http://localhost:5173/register');
   }
-  res.redirect('http://localhost:5173/login');
+  
+  
 }
 
 module.exports = router;

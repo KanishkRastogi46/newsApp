@@ -76,9 +76,9 @@ export const Home= ()=>{
                 fontFamily: "Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
             }}>
                 <div className="text">
-                    <h1 style={{textTransform: "uppercase"}} ref={h1ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>we stay updated</h1>
-                    <h1 style={{textTransform: "uppercase"}} ref={h2ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>so that you</h1>
-                    <h1 style={{textTransform: "uppercase"}} ref={h3ref}  style={{background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>don't get dated</h1>
+                    <h1 ref={h1ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>we stay updated</h1>
+                    <h1 ref={h2ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>so that you</h1>
+                    <h1 ref={h3ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>don't get dated</h1>
                 </div>
                 
                 <NavLink 
@@ -90,7 +90,7 @@ export const Home= ()=>{
                         justifyContent: 'center',
                         alignItems: 'center',
                         margin: "2rem",
-                        borderRadius: "10%",
+                        borderRadius: "10px",
                         fontSize: "large",
                         backgroundColor: "crimson",
                         textDecoration: "none",
@@ -99,7 +99,7 @@ export const Home= ()=>{
                     }}
                     ref={h4ref}
                 >
-                    EXPLORE >>>
+                    EXPLORE
     
                 </NavLink>
                 

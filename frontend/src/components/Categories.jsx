@@ -14,17 +14,7 @@ export const Categories= ()=>{
 
     useEffect(()=>{
         setNews([]);
-        fetch(`https://newsapi.org/v2/everything?q=${topic}&pageSize=3&page=${pageno}&apiKey=d13c430dd3a44a2eae93669d817bf181`)
-        .then((res)=>{
-            return res.json();
-        }).then((result)=>{
-            console.log(result);
-            setNews(result.articles);
-            setTotalResults(result.totalResults);
-        })
-        setTopic("");
-        console.log(subject);
-    }, [pageno])
+    }, [])
 
     const searchedTopic= ()=>{
         fetch(`https://newsapi.org/v2/everything?q=${topic}&pageSize=3&page=${pageno}&apiKey=d13c430dd3a44a2eae93669d817bf181`)

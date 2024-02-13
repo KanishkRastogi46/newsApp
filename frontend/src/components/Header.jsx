@@ -52,7 +52,7 @@ export const Header= ()=>{
             </div>
             
             <form method='get' action='/api/logout' className='logout'>
-                <input type="submit" value="LOGOUT" style={{background: 'none'}}/>
+                <input type="submit" value="LOGOUT" id="out" style={{backgroundColor: 'red'}}/>
             </form>
         </div>
     </>
