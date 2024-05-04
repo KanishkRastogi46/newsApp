@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNews } from '../context';
+//import { useNews } from '../context';
 import { useNavigate } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 
 const Login= ()=>{
     let navigate= useNavigate();
-    let {setToken}= useNews();
+    //let {setToken}= useNews();
 
     let [user, setUser]= useState({username: "", password: ""});
 
@@ -15,35 +15,24 @@ const Login= ()=>{
             if(name==="username") {
                 return {...previous, username: value}
             }
-            else if(name==="email") {
-                return {...previous, email: value}
-            }
             else if(name==="password") {
                 return {...previous, password: value}
             }
         });
     };
 
-    /*const formSubmit= async(e)=>{
+    const formSubmit= async(e)=>{
         try{
-            //e.preventDefault();
-            //const login_res= await axios.post("/api/login", user);
-            let login_res= await fetch('http://localhost:3000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            })
-            if(login_res.ok){
-                let res= await login_res.json();
-                setToken(res.token);
+            const login_res= await axios.post("http://localhost:3000/api/login", user);
+            console.log(login_res.data);
+            if(login_res.data.success){
+                setUser({username: '', password: ''});
                 navigate('/');
         }
       }catch(err){
         console.log(err);
       }
-    };*/
+    };
 
     return (
         <>
@@ -60,10 +49,7 @@ const Login= ()=>{
             <div style={{display: "flex", flexDirection: "column", gap: "2vh", backgroundColor: "black"}}>
                 <h1 style={{textAlign: "center", fontSize: "3rem"}}>Login</h1>
 
-                <form 
-                    action='/api/login'
-                    //onSubmit={(e)=>formSubmit(e)} 
-                    method="post" 
+                <div
                     style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", width: 400, height: 200, backgroundColor: "black"}}
                 >
 
@@ -91,9 +77,9 @@ const Login= ()=>{
                         />
                     </div>  
 
-                    <input type="submit" value="login" style={{backgroundColor: 'red', border: "1px solid black", borderRadius: "40px", width: "5rem", height: "1.5rem", margin:"1rem"}}/>
+                    <input type="submit" value="login" style={{backgroundColor: 'red', border: "1px solid black", borderRadius: "40px", width: "5rem", height: "1.5rem", margin:"1rem"}} onClick={(e)=>formSubmit(e)}/>
 
-                </form>
+                </div>
             </div>
         </div>
         </>

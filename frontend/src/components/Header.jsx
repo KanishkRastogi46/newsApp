@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import "../stylesheets/Header.css";
 import { gsap } from 'gsap/gsap-core';
+import axios from 'axios';
 
 export const Header= ()=>{
     let linkRef= useRef();
@@ -16,6 +17,14 @@ export const Header= ()=>{
             y: 0
         })
     })
+
+    let logout= async function(){
+        let res= await axios.get('http://localhost:3000/api/logout');
+        if(res.data.success){
+            navigate('/login');
+        }
+    }
+
     return <>
         <div className="header-container" ref={linkRef}>
 
@@ -51,9 +60,9 @@ export const Header= ()=>{
                 </NavLink>
             </div>
             
-            <form method='get' action='/api/logout' className='logout'>
-                <input type="submit" value="LOGOUT" id="out" style={{backgroundColor: 'red'}}/>
-            </form>
+            <div className='logout'>
+                <input type="submit" value="LOGOUT" id="out" style={{backgroundColor: 'red'}} onClick={logout}/>
+            </div>
         </div>
     </>
 }

@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register= ()=>{
+    let navigate= useNavigate();
     let [user, setUser]= useState({username: "", email: "", password: ""});
 
     const enterData= (e)=>{
@@ -20,22 +22,17 @@ const Register= ()=>{
         });
     };
 
-    /*const formSubmit= async(e)=>{
-        // e.preventDefault();
-        setUser({username: "", email: "", password: ""});
-
-        await fetch("http://localhost:3000/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user)
-        }).then((res)=>{
-            return res.json();
-        }).then((result)=>{
-            console.log(result);
-        })
-    };*/
+    const formSubmit= async(e)=>{
+        let res= await axios.post('http://localhost:3000/api/register', user);
+        console.log(res.data);
+        if(res.data.success){
+            setUser({username: "", email: "", password: ""});
+            navigate('/login');
+        }else{
+            setUser({username: "", email: "", password: ""});
+            navigate('/register')
+        }
+    };
 
     return (
         <>
@@ -52,10 +49,7 @@ const Register= ()=>{
             <div style={{display: "flex", flexDirection: "column", gap: "3vh", backgroundColor: "black"}}>
                 <h1 style={{textAlign: "center", fontSize: "3rem"}}>Register</h1>
 
-                <form 
-                    action='/api/register'
-                    //onSubmit={(e)=>formSubmit(e)} 
-                    method="post" 
+                <div
                     style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", width: 400, height: 250, backgroundColor: "black"}}
                 >
 
@@ -96,9 +90,9 @@ const Register= ()=>{
                         />
                     </div>  
 
-                    <input type="submit" value="register" style={{backgroundColor: 'red', border: "1px solid black", borderRadius: "40px", width: "5rem", height: "1.5rem", margin:"1rem"}}/>
+                    <input type="submit" value="register" style={{backgroundColor: 'red', border: "1px solid black", borderRadius: "40px", width: "5rem", height: "1.5rem", margin:"1rem"}} onClick={(e)=>formSubmit(e)}/>
 
-                </form>
+                </div>
             </div>
         </div>
     </>
