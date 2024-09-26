@@ -14,10 +14,15 @@ const Root= ()=>{
     }
 
     let authUser= async function(){
-        let res= await axios.get('http://localhost:3000/api/auth');
-        console.log(res.data);
-        if(!res.data.success){
-            navigate('/login');
+        try {
+            let res= await axios.post('http://localhost:3000/api/auth', {refreshtoken:localStorage.getItem('refreshtoken')});
+            console.log(res.data);
+            if(!res.data.success){
+                navigate('/login');
+            }
+        } 
+        catch (error) {
+            console.log(error);
         }
     }
 

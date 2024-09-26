@@ -1,54 +1,7 @@
-import React, { useLayoutEffect, useRef, useEffect } from 'react';
-import {gsap} from "gsap";
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const Home= ()=>{
-
-    let h1ref= useRef();
-    let h2ref= useRef();
-    let h3ref= useRef();
-    let h4ref= useRef();
-
-    useLayoutEffect(()=>{
-        gsap.from(h1ref.current,{
-            duration: 1,
-            x: -550
-        })
-        gsap.to(h1ref.current,{
-            duration: 1,
-            x: 0,
-        })
-        gsap.from(h2ref.current,{
-            duration: 1,
-            x: -550,
-            delay: 0.5
-        })
-        gsap.to(h2ref.current,{
-            duration: 1,
-            x: 0,
-            delay: 0.5
-        })
-        gsap.from(h3ref.current,{
-            duration: 1,
-            x: -550,
-            delay: 1
-        })
-        gsap.to(h3ref.current,{
-            duration: 1,
-            x: 0,
-            delay: 1
-        })
-        gsap.from(h4ref.current,{
-            duration: 1,
-            x: -550,
-            delay: 1.5
-        })
-        gsap.to(h4ref.current,{
-            duration: 1,
-            x: 0,
-            delay: 1.5
-        })
-    })
 
     return<>
         <div className="home-container" style={{
@@ -71,9 +24,9 @@ export const Home= ()=>{
                 fontFamily: "Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
             }}>
                 <div className="text">
-                    <h1 ref={h1ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>we stay updated</h1>
-                    <h1 ref={h2ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>so that you</h1>
-                    <h1 ref={h3ref}  style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>don't get dated</h1>
+                    <h1 style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>we stay updated</h1>
+                    <h1 style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>so that you</h1>
+                    <h1 style={{textTransform: "uppercase", background: '-webkit-linear-gradient(60deg, #E21143, #FFB03A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>don't get dated</h1>
                 </div>
                 
                 <NavLink 
@@ -92,7 +45,6 @@ export const Home= ()=>{
                         color: 'black',
                         fontWeight: 'bolder'
                     }}
-                    ref={h4ref}
                 >
                     EXPLORE
     

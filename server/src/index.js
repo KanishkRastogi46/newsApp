@@ -4,14 +4,13 @@ const cookieparser= require('cookie-parser');
 const path= require('path');
 const session= require('express-session');
 const cors= require('cors');
+const connectDB = require("../db/index");
 
 const app= express();
 
 const userRouter= require('../routes/user-route');
 
-dotenv.config({
-    path: './.env'
-});
+dotenv.config();
 
 app.use(cors({
     origin: "http://localhost:5173"
@@ -34,6 +33,7 @@ app.use('/', userRouter);
 
 const startServer= async()=>{
     try{
+        await connectDB();
         app.listen(process.env.PORT, ()=>{
             console.log("App Listening on port", process.env.PORT);
         })

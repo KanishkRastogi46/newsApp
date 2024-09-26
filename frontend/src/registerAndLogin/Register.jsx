@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Register= ()=>{
     let navigate= useNavigate();
-    let [user, setUser]= useState({username: "", email: "", password: ""});
+    let [user, setUser]= useState({username: "", email: "", password: "", confirmPassword: ""});
 
     const enterData= (e)=>{
         setUser((previous)=>{
@@ -19,6 +19,9 @@ const Register= ()=>{
             else if(name==="password") {
                 return {...previous, password: value}
             }
+            else if(name==="confirmPassword") {
+                return {...previous, confirmPassword: value}
+            }
         });
     };
 
@@ -26,10 +29,10 @@ const Register= ()=>{
         let res= await axios.post('http://localhost:3000/api/register', user);
         console.log(res.data);
         if(res.data.success){
-            setUser({username: "", email: "", password: ""});
+            setUser({username: "", email: "", password: "", confirmPassword: ""});
             navigate('/login');
         }else{
-            setUser({username: "", email: "", password: ""});
+            setUser({username: "", email: "", password: "", confirmPassword: ""});
             navigate('/register')
         }
     };
@@ -50,7 +53,7 @@ const Register= ()=>{
                 <h1 style={{textAlign: "center", fontSize: "3rem"}}>Register</h1>
 
                 <div
-                    style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", width: 400, height: 250, backgroundColor: "black"}}
+                    style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", width: 500, height: 250, backgroundColor: "black"}}
                 >
 
                     <div  style={{display: "flex", gap: "10px"}}>
@@ -85,6 +88,18 @@ const Register= ()=>{
                             name="password" 
                             id="password" 
                             placeholder="Enter password"
+                            onChange={(e)=>enterData(e)}
+                            style={{width: "80%", height: "1.5rem", borderRadius: 0, backgroundColor: "white"}}
+                        />
+                    </div>  
+
+                    <div  style={{display: "flex", gap: "10px"}}>
+                        <label htmlFor="password" style={{fontWeight: "bold", fontSize: "1.5rem"}}>Confirm Password:</label>
+                        <input 
+                            type="password" 
+                            name="confirmPassword" 
+                            id="confirmPassword" 
+                            placeholder="Confirm password"
                             onChange={(e)=>enterData(e)}
                             style={{width: "80%", height: "1.5rem", borderRadius: 0, backgroundColor: "white"}}
                         />

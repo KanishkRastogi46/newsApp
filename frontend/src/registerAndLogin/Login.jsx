@@ -27,10 +27,12 @@ const Login= ()=>{
             console.log(login_res.data);
             if(login_res.data.success){
                 setUser({username: '', password: ''});
+                localStorage.setItem("refreshtoken", login_res.data.refreshtoken);
                 navigate('/');
+            }
         }
-      }catch(err){
-        console.log(err);
+        catch(err){
+            console.log(err);
       }
     };
 

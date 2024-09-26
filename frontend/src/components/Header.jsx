@@ -1,32 +1,24 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import "../stylesheets/Header.css";
-import { gsap } from 'gsap/gsap-core';
 import axios from 'axios';
 
 export const Header= ()=>{
-    let linkRef= useRef();
-    useLayoutEffect(()=>{
-        gsap.from(linkRef.current, {
-            duration: 1,
-            y: -100
-        })
-        gsap.to(linkRef.current, {
-            duration: 1,
-            y: 0
-        })
-    })
+    let navigate = useNavigate();
 
     let logout= async function(){
-        let res= await axios.get('http://localhost:3000/api/logout');
+        let refreshtoken = localStorage.getItem('refreshtoken');
+        localStorage.removeItem('refreshtoken');
+        let res= await axios.post('http://localhost:3000/api/logout', {refreshtoken});
+        console.log(res.data);
         if(res.data.success){
             navigate('/login');
-        }
+        }else localStorage.getItem('refreshtoken', refreshtoken);
     }
 
     return <>
-        <div className="header-container" ref={linkRef}>
+        <div className="header-container">
 
             <div className="links" >
                 <NavLink 
