@@ -1,0 +1,1 @@
+export {NewsContext, NewsProvider, useNews} from "./NewsContext";

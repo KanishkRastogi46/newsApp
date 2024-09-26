@@ -1,0 +1,36 @@
+.general-container{
+    margin: 0;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(233, 234, 201);
+}
+
+.btn{
+    width: 10vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    border-radius: 10%;
+    width: 90%;
+    height: 5%;
+    box-shadow: 2px 2px 2px rgb(40, 30, 50);
+}
+
+input:hover{
+    background-color: crimson;
+}
+
+.news-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 80vh;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
